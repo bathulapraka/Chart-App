@@ -3,7 +3,9 @@ import ExpenseUser from "./Expenseuserdetails";
 
 const ExpenseForm = () => {
   const saveexpenseuserdetails = (expensedata) => {
+  
     console.log(expensedata);
+
   };
 
   return (
