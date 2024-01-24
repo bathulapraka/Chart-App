@@ -1,12 +1,12 @@
-
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import "./Expenseuserdetails.css";
 
 const ExpenseUser = (props) => {
   const [enteredtitle, setTtle] = useState("");
   const [enterAmount, setAmount] = useState("");
   const [enterDate, setDate] = useState("");
-  
+  const [enterbutton, setbutton] = useState("");
+
 
   const settitleoftheuser = (event) => {
     setTtle(event.target.value);
@@ -29,44 +29,60 @@ const ExpenseUser = (props) => {
     setTtle("");
     setAmount("");
     setDate("");
-   
+    setbutton(false);
+    
   };
-
+  const SettingButton = () => {
+    setbutton(!enterbutton);
+  };
+  const settingcancel=()=>{
+    setTtle("");
+    setAmount("");
+    setDate("");
+    setbutton(false);
+  }
+  
   return (
     <div className="submit-form">
     
-    <form onSubmit={submithandle}>
-      <div className="all-details">
-        <div className="sub-details">
-          <label>Title</label>
-          <input type="text" value={enteredtitle} onChange={settitleoftheuser} />
+     
+      {enterbutton &&  (
+        <div className="all-details">
          
+          <div className="sub-details">
+            <label>Title</label>
+            <input
+              type="text"
+              value={enteredtitle}
+              onChange={settitleoftheuser}
+            />
+          </div>
+          <div className="sub-Amount">
+            <label>Amount</label>
+            <input
+              type="number"
+              min="0.002"
+              max="0.004"
+              value={enterAmount}
+              onChange={setAmountoftheuser}
+            />
+          </div>
+          <div className="sub-date">
+            <label>Date</label>
+            <input
+              type="date"
+              min="2010-9-10"
+              max="2015-6-8"
+              value={enterDate}
+              onChange={setDateoftheuser}
+            />
+          </div>
+          
+          <button onClick={settingcancel}>Cancel</button>
         </div>
-        <div className="sub-Amount">
-          <label>Amount</label>
-          <input
-            type="number"
-            min="0.002"
-            max="0.004"
-            value={enterAmount}
-            onChange={setAmountoftheuser}
-          />
-        </div>
-        <div className="sub-date">
-          <label>Date</label>
-          <input
-            type="date"
-            min="2010-9-10"
-            max="2015-6-8"
-            value={enterDate}
-            onChange={setDateoftheuser}
-          />
-        </div>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-      
-      </div>
+      )}
+      <button onClick={SettingButton}>{enterbutton ? "Add Expenses": "Add Expenses"}</button>
+    </div>
   );
 };
 
