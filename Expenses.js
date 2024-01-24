@@ -23,7 +23,7 @@ const Expenses = (props) => {
           selected={filteredyear}
           onChangeFilter={filteredyearhzndler}
         />
-        
+        {FilterUsingYearExpenses.length ===1 && <p className="no-expenses">Only single Expense here</p>}
         {FilterUsingYearExpenses.map((item) => (
           <ExpenseItem
             key={item.id}
@@ -33,7 +33,7 @@ const Expenses = (props) => {
           />
         ))}
 
-        {FilterUsingYearExpenses.length ===0 && <p className="no-expenses"> No expenses </p>}
+        
       </div>
     </div>
   );
