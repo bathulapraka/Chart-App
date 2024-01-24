@@ -1,11 +1,12 @@
 
 import React,{ useState } from "react";
-
+import "./Expenseuserdetails.css";
 
 const ExpenseUser = (props) => {
   const [enteredtitle, setTtle] = useState("");
   const [enterAmount, setAmount] = useState("");
   const [enterDate, setDate] = useState("");
+  
 
   const settitleoftheuser = (event) => {
     setTtle(event.target.value);
@@ -28,15 +29,20 @@ const ExpenseUser = (props) => {
     setTtle("");
     setAmount("");
     setDate("");
+   
   };
+
   return (
+    <div className="submit-form">
+    
     <form onSubmit={submithandle}>
       <div className="all-details">
         <div className="sub-details">
           <label>Title</label>
           <input type="text" value={enteredtitle} onChange={settitleoftheuser} />
+         
         </div>
-        <div className="sub-details">
+        <div className="sub-Amount">
           <label>Amount</label>
           <input
             type="number"
@@ -46,7 +52,7 @@ const ExpenseUser = (props) => {
             onChange={setAmountoftheuser}
           />
         </div>
-        <div className="sub-details">
+        <div className="sub-date">
           <label>Date</label>
           <input
             type="date"
@@ -57,10 +63,10 @@ const ExpenseUser = (props) => {
           />
         </div>
       </div>
-      <button type="submit" onChange={submithandle}>
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
+      
+      </div>
   );
 };
 

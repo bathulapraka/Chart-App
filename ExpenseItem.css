@@ -7,9 +7,11 @@
   margin: 1rem 0;
   border-radius: 12px;
   background-color: #4b4b4b;
-  margin-left: 0px;
-  margin-right: 30px;
-}
+  margin-left: 100px;
+  margin-right: 100px;
+  
+  overflow:-moz-hidden-unscrollable;
+}   
 
 .expense-item__description {
   display: flex;  
@@ -21,7 +23,8 @@
   flex: 1;
   justify-content: center;
   align-items: center;
-  margin-left: 600px;
+
+  
 }
 
 .expense-item h2 {
@@ -65,3 +68,4 @@
   background-color:purple;
 
 }
+

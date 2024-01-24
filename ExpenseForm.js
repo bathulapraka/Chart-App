@@ -1,10 +1,10 @@
 import React from "react";
 import ExpenseUser from "./Expenseuserdetails";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   const saveexpenseuserdetails = (expensedata) => {
   
-    console.log(expensedata);
+    props.onAddexpense(expensedata);
 
   };
 
