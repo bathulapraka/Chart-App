@@ -1,41 +1,24 @@
 import React, { useState } from "react";
-
 import Expenses from "./Expenses";
-
 import ExpenseForm from "./ExpenseForm";
-const dummyexpenses = [
-  {
-    id: "e1",
-    title: "bike repair",
-    amount: 198.56,
-    date: new Date(2020, 1, 6),
-  },
-  {
-    id: "e2",
-    title: "medicals",
-    amount: 2890.56,
-    date: new Date(2020, 3, 19),
-  },
-  {
-    id: "e3",
-    title: "dinner",
-    amount: 2890.56,
-    date: new Date(2010, 3, 19),
-  },
-];
 
 const App = () => {
-  const [expenses, setexpenses] = useState(dummyexpenses);
+  // State for managing all expenses
+  const [expenses, setExpenses] = useState([]);
 
-  const addexpensehandler = (expense) => {
-    setexpenses((prevExpenses) => {
+  // Function to handle adding expenses
+  const addExpenseHandler = (expense) => {
+    setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
   };
 
   return (
     <div>
-      <ExpenseForm onAddexpense={addexpensehandler}/>
+      {/* Render the ExpenseForm component and pass the addExpenseHandler function as a prop */}
+      <ExpenseForm onAddExpense={addExpenseHandler} />
+
+      {/* Render the Expenses component and pass the expenses as a prop */}
       <Expenses items={expenses} />
     </div>
   );

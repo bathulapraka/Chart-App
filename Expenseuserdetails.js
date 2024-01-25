@@ -2,87 +2,74 @@ import React, { useState } from "react";
 import "./Expenseuserdetails.css";
 
 const ExpenseUser = (props) => {
-  const [enteredtitle, setTtle] = useState("");
-  const [enterAmount, setAmount] = useState("");
-  const [enterDate, setDate] = useState("");
-  const [enterbutton, setbutton] = useState("");
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
 
+  const setTitleOfTheUser = (event) => {
+    setEnteredTitle(event.target.value);
+  };
 
-  const settitleoftheuser = (event) => {
-    setTtle(event.target.value);
+  const setAmountOfTheUser = (event) => {
+    setEnteredAmount(event.target.value);
   };
-  const setAmountoftheuser = (event) => {
-    setAmount(event.target.value);
+
+  const setDateOfTheUser = (event) => {
+    setEnteredDate(event.target.value);
   };
-  const setDateoftheuser = (event) => {
-    setDate(event.target.value);
-  };
-  const submithandle = (event) => {
+
+  const submitHandle = (event) => {
     event.preventDefault();
 
-    const expensealldate = {
-      title: enteredtitle,
-      amount: enterAmount,
-      date: new Date(enterDate),
+    const expenseAllDate = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
     };
-    props.onSaveExpensedata(expensealldate);
-    setTtle("");
-    setAmount("");
-    setDate("");
-    setbutton(false);
-    
+
+    props.onSaveExpensedata(expenseAllDate);
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
   };
-  const SettingButton = () => {
-    setbutton(!enterbutton);
-  };
-  const settingcancel=()=>{
-    setTtle("");
-    setAmount("");
-    setDate("");
-    setbutton(false);
-  }
-  
+
   return (
-    <div className="submit-form">
-    
-     
-      {enterbutton &&  (
-        <div className="all-details">
-         
-          <div className="sub-details">
-            <label>Title</label>
-            <input
-              type="text"
-              value={enteredtitle}
-              onChange={settitleoftheuser}
-            />
-          </div>
-          <div className="sub-Amount">
-            <label>Amount</label>
-            <input
-              type="number"
-              min="0.002"
-              max="0.004"
-              value={enterAmount}
-              onChange={setAmountoftheuser}
-            />
-          </div>
-          <div className="sub-date">
-            <label>Date</label>
-            <input
-              type="date"
-              min="2010-9-10"
-              max="2015-6-8"
-              value={enterDate}
-              onChange={setDateoftheuser}
-            />
-          </div>
-          
-          <button onClick={settingcancel}>Cancel</button>
+    <form onSubmit={submitHandle}>
+      <div className="all-details">
+        <div className="sub-details">
+          <label>Title</label>
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={setTitleOfTheUser}
+          />
         </div>
-      )}
-      <button onClick={SettingButton}>{enterbutton ? "Add Expenses": "Add Expenses"}</button>
-    </div>
+        <div className="sub-Amount">
+          <label>Amount</label>
+          <input
+            type="number"
+            min="0.002"
+            max="0.004"
+            value={enteredAmount}
+            onChange={setAmountOfTheUser}
+          />
+        </div>
+        <div className="sub-date">
+          <label>Date</label>
+          <input
+            type="date"
+            min="2010-9-10"
+            max="2015-6-8"
+            value={enteredDate}
+            onChange={setDateOfTheUser}
+          />
+        </div>
+      </div>
+      <div>
+        <button type="button" onClick={props.onCancel}>Cancel</button>
+        <button type="submit">Add Expenses</button>
+      </div>
+    </form>
   );
 };
 

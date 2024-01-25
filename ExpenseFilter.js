@@ -4,6 +4,7 @@ const ExpenseFilter = (props) => {
   const dropdownchangehandler = (event) => {
     props.onChangeFilter(event.target.value);
   };
+  
   return (
     <div className="expense-filter">
       <div className="expense-filter-_control">
